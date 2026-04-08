@@ -9,15 +9,16 @@
 
     <style>
         :root {
-            --bg-color: #f7f1e3; /* خلفية ورقية دافئة */
-            --text-color: #4a4a4a; /* لون حبر فحمي ناعم */
-            --accent-color: #8e7d6a; /* لون برونزي هادئ للخلفية */
-            --paper-texture: url('https://www.transparenttextures.com/patterns/parchment.png'); /* نسيج ورق خفيف */
+            --bg-color: #f7f1e3; 
+            --text-color: #4a4a4a; 
+            --accent-color: #8e7d6a; 
+            --paper-texture: url('https://www.transparenttextures.com/patterns/parchment.png'); 
+        
         }
 
         body {
             background-color: var(--bg-color);
-            background-image: var(--paper-texture); /* إضافة نسيج الورق */
+            background-image: var(--paper-texture); 
             color: var(--text-color);
             font-family: 'Tajawal', sans-serif;
             margin: 0;
@@ -26,10 +27,9 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden; /* لمنع التمرير الأفقي */
+            overflow-x: hidden; 
         }
 
-        /* حاوية المحتوى الأساسية */
         .container {
             max-width: 800px;
             width: 90%;
@@ -39,7 +39,6 @@
             padding-bottom: 50px;
         }
 
-        /* عنوان بخط يدي (כأنك تكتبينه بنفسك) */
         h1 {
             font-family: 'Reenie Beanie', cursive;
             font-size: 5rem;
@@ -56,26 +55,24 @@
             font-size: 1.2rem;
         }
 
-        /* قسم النص الشخصي: تأثير الكتابة اليدوية */
         .personal-message {
             line-height: 2.2;
             font-size: 1.3rem;
             margin-bottom: 80px;
             text-align: justify;
             padding: 0 30px;
-            border-right: 2px solid var(--accent-color); /* شريط جانبي كأنه حافة ورقة */
+            border-right: 2px solid var(--accent-color);
             position: relative;
         }
 
         .writing-effect {
             display: inline-block;
-            white-space: pre-wrap; /* للحفاظ على تنسيق الأسطر */
+            white-space: pre-wrap; 
             overflow: hidden;
-            border-left: 2px solid; /* مؤشر الكتابة */
+            border-left: 2px solid; 
             animation: typing 5s steps(100, end), blink-caret .75s step-end infinite;
         }
 
-        /* تصميم الظرف (The Envelope) */
         .envelope-container {
             position: relative;
             cursor: pointer;
@@ -93,7 +90,7 @@
             width: 350px;
             height: 240px;
             background: #e9e0d2;
-            background-image: var(--paper-texture); /* نسيج ورق للظرف أيضاً */
+            background-image: var(--paper-texture); 
             margin: 0 auto;
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
@@ -104,13 +101,13 @@
             border: 1px solid rgba(0,0,0,0.1);
         }
 
-        .envelope::after { /* طية الظرف */
+        .envelope::after { 
             content: '';
             position: absolute;
             top: 0; left: 0; width: 0; height: 0;
             border-left: 175px solid transparent;
             border-right: 175px solid transparent;
-            border-top: 120px solid rgba(0,0,0,0.03); /* لون طية هادئ */
+            border-top: 120px solid rgba(0,0,0,0.03); 
         }
 
         .envelope-text {
@@ -120,7 +117,6 @@
             z-index: 10;
         }
 
-        /* الختم أو التوقيع (في التذييل) */
         .footer-signature {
             font-family: 'Reenie Beanie', cursive;
             font-size: 2.5rem;
@@ -130,18 +126,17 @@
             opacity: 0.8;
         }
 
-        /* تأثير الـ Modal (الرسالة التي تظهر عند الضغط) */
         #messageModal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(253, 250, 245, 0.99); /* خلفية بيضاء شبه شفافة */
+            background: rgba(253, 250, 245, 0.99); 
             background-image: var(--paper-texture);
             z-index: 1000;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            backdrop-filter: blur(5px); /* تأثير ضبابي للخلفية */
+            backdrop-filter: blur(5px); 
         }
 
         .modal-content {
@@ -169,7 +164,6 @@
             color: var(--text-color);
         }
 
-        /* تأثيرات الحركة */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -180,7 +174,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* حركات تأثير الكتابة */
         @keyframes typing {
             from { width: 0 }
             to { width: 100% }
@@ -190,7 +183,6 @@
             50% { border-color: var(--accent-color) }
         }
 
-        /* صورة جانبية (مثل النمط اللي أعجبك) */
         .side-photo {
             position: fixed;
             bottom: 60px;
@@ -206,7 +198,7 @@
             align-items: center;
             justify-content: center;
             transition: transform 0.3s ease;
-            z-index: 50; /* للتأكد من أنها فوق الخلفية */
+            z-index: 50; 
         }
 
         .side-photo:hover {
@@ -238,36 +230,22 @@
         </div>
     </div>
 
-    <div id="messageModal">
+   <div id="messageModal">
         <span class="close-btn" onclick="closeMessage()">&times;</span>
         <div class="modal-content">
-            <h2 style="font-family: 'Amiri', serif; font-size: 2.8rem; margin-bottom: 20px;">من قلبي لحبيبي </h2>
-            <p style="font-size: 1.4rem; line-height: 2; text-align: justify; padding: 0 15px;">
-            
-            
-            
-        <br>
-
-
-        كل عام وانت بخير وصحة وسلامة وياجعل ايام القادمة كلها خير
-        وابسط شيء اقدمه لك هو دعوة لك من قلبي ان ايامك كلها تكون بخير وان الله يكثر فلوسك 
-        كل سنة وانت طيب حبيبي
-            </p>
+            <h2 style="font-family: 'Amiri', serif; font-size: 2.5rem; margin-bottom: 20px;">من قلبي لحبيبي</h2>
+            <div style="font-size: 1.3rem; line-height: 2.2; text-align: center; color: #555;">
+                <p>كل عام وانت بخير وصحة وسلامة<br>وياجعل ايامك القادمة كلها خير..</p>
+                <p>ابسط شيء اقدمه لك هو دعوة من قلبي<br>ان الله يوفقك ويكتب لك الخير   </p>
+                <p style="font-weight: bold; color: var(--accent-color);">كل سنة وانت طيب حبيبي</p>
+            </div>
         </div>
     </div>
 
-    <div class="footer-signature">
-        رنودي
-    </div>
-
+    
     
 
     <script>
-        // النص الشخصي الذي سيتم كتابته
-        const messageText = ` ماكان ودي اقولها بطريقة عادية مثل باقي الناس   `;
-
-        let index = 0;
-        const speed = 70; // سرعة الكتابة (بالميلي ثانية)
 
         function typeWriter() {
             if (index < messageText.length) {
@@ -277,7 +255,6 @@
             }
         }
 
-        // تشغيل تأثير الكتابة عند تحميل الصفحة
         window.onload = function() {
             typeWriter();
         };
