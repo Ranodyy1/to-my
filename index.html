@@ -146,7 +146,6 @@
     <div class="footer-signature">رنودي</div>
 
     <script>
-    
         function typeWriter() {
             if (index < messageText.length) {
                 document.getElementById("typedMessage").innerHTML += messageText.charAt(index);
@@ -155,13 +154,15 @@
             }
         }
 
-        window.onload = typeWriter;
+        window.onload = function() {
+            typeWriter();
+        };
 
         function openMessage() {
-            // تشغيل الصوت
             var audio = document.getElementById("mySong");
-            audio.play();
-            // إظهار الرسالة
+            if (audio) {
+                audio.play().catch(e => console.log("الصوت يحتاج تفاعل"));
+            }
             document.getElementById('messageModal').style.display = 'flex';
         }
 
