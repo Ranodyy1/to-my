@@ -4,43 +4,268 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To my hardworking man</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Reenie+Beanie&family=Tajawal&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,700&family=Reenie+Beanie&family=Tajawal:wght@300;500&display=swap" rel="stylesheet">
+
     <style>
-        body { background: #f7f1e3; color: #4a4a4a; font-family: 'Tajawal', sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; }
-        .container { text-align: center; margin-top: 50px; width: 90%; }
-        h1 { font-family: 'Reenie Beanie', cursive; font-size: 3.5rem; margin: 10px 0; }
-        .envelope-container { cursor: pointer; margin: 40px auto; width: 280px; height: 180px; background: #e9e0d2; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); position: relative; z-index: 10; }
-        .envelope-container:active { transform: scale(0.95); }
-        #messageModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; justify-content: center; align-items: center; }
-        .modal-content { width: 80%; text-align: center; padding: 20px; border: 1px solid #ddd; border-radius: 15px; }
+        :root {
+            --bg-color: #f7f1e3; 
+            --text-color: #4a4a4a; 
+            --accent-color: #8e7d6a; 
+            --paper-texture: url('https://www.transparenttextures.com/patterns/parchment.png'); 
+        
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: var(--paper-texture); 
+            color: var(--text-color);
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden; 
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin-top: 80px;
+            text-align: center;
+            animation: fadeIn 2s ease;
+            padding-bottom: 50px;
+        }
+
+        h1 {
+            font-family: 'Reenie Beanie', cursive;
+            font-size: 5rem;
+            font-weight: normal;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .subtitle {
+            font-style: italic;
+            font-family: 'Amiri', serif;
+            opacity: 0.7;
+            margin-bottom: 60px;
+            font-size: 1.2rem;
+        }
+
+        .personal-message {
+            line-height: 2.2;
+            font-size: 1.3rem;
+            margin-bottom: 80px;
+            text-align: justify;
+            padding: 0 30px;
+            border-right: 2px solid var(--accent-color);
+            position: relative;
+        }
+
+        .writing-effect {
+            display: inline-block;
+            white-space: pre-wrap; 
+            overflow: hidden;
+            border-left: 2px solid; 
+            animation: typing 5s steps(100, end), blink-caret .75s step-end infinite;
+        }
+
+        .envelope-container {
+            position: relative;
+            cursor: pointer;
+            margin-top: 50px;
+            margin-bottom: 120px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .envelope-container:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .envelope {
+            width: 350px;
+            height: 240px;
+            background: #e9e0d2;
+            background-image: var(--paper-texture); 
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .envelope::after { 
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0; height: 0;
+            border-left: 175px solid transparent;
+            border-right: 175px solid transparent;
+            border-top: 120px solid rgba(0,0,0,0.03); 
+        }
+
+        .envelope-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.3rem;
+            color: #6d6d6d;
+            z-index: 10;
+        }
+
+        .footer-signature {
+            font-family: 'Reenie Beanie', cursive;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-top: auto;
+            padding: 30px;
+            opacity: 0.8;
+        }
+
+        #messageModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(253, 250, 245, 0.99); 
+            background-image: var(--paper-texture);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(5px); 
+        }
+
+        .modal-content {
+            max-width: 650px;
+            text-align: center;
+            animation: slideUp 0.8s ease;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--text-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color) }
+        }
+
+        .side-photo {
+            position: fixed;
+            bottom: 60px;
+            left: 50px;
+            width: 170px;
+            height: 200px;
+            border: 12px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: rotate(-7deg);
+            background: #eee;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            z-index: 50; 
+        }
+
+        .side-photo:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .side-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
     </style>
 </head>
 <body>
-    <audio id="mySong" src="song.mp3" preload="auto"></audio>
+
     <div class="container">
         <h1>To my hardworking man</h1>
-        <p id="typedMessage" style="min-height: 50px;"></p>
+        <p class="subtitle">كل عام وأنت بقلبي.. يا أغلى شخص </p>
+
+        <div class="personal-message">
+            <p id="typedMessage"></p>
+        </div>
+
         <div class="envelope-container" onclick="openMessage()">
-            <span style="font-family: 'Amiri', serif;">إفتحني ✨</span>
+            <div class="envelope">
+                <div class="envelope-text"> </div>
+            </div>
         </div>
     </div>
-    <div id="messageModal">
+
+   <div id="messageModal">
+        <span class="close-btn" onclick="closeMessage()">&times;</span>
         <div class="modal-content">
-            <h2 style="font-family: 'Amiri', serif;">من قلبي لحبيبي</h2>
-            <p>كل عام وانت بخير وصحة وسلامة<br>ياجعل ايامك القادمة كلها خير..</p>
-            <button onclick="closeMessage()" style="margin-top:20px; padding:10px 20px;">إغلاق</button>
+            <h2 style="font-family: 'Amiri', serif; font-size: 2.5rem; margin-bottom: 20px;">من قلبي لحبيبي</h2>
+            <div style="font-size: 1.3rem; line-height: 2.2; text-align: center; color: #555;">
+                <p>كل عام وانت بخير وصحة وسلامة<br>وياجعل ايامك القادمة كلها خير..</p>
+                <p>ابسط شيء اقدمه لك هو دعوة من قلبي<br>ان الله يوفقك ويكتب لك الخير   </p>
+                <p style="font-weight: bold; color: var(--accent-color);">كل سنة وانت طيب حبيبي</p>
+            </div>
         </div>
     </div>
+
+    
+    
+
     <script>
-        const text = "ماكان ودي اقولها بطريقة عادية مثل باقي الناس..";
-        let i = 0;
-        function type() { if (i < text.length) { document.getElementById("typedMessage").innerHTML += text.charAt(i); i++; setTimeout(type, 70); } }
-        window.onload = type;
-        function openMessage() { 
-            document.getElementById("mySong").play().catch(e => console.log("Audio play failed"));
-            document.getElementById('messageModal').style.display = 'flex'; 
+
+        function typeWriter() {
+            if (index < messageText.length) {
+                document.getElementById("typedMessage").innerHTML += messageText.charAt(index);
+                index++;
+                setTimeout(typeWriter, speed);
+            }
         }
-        function closeMessage() { document.getElementById('messageModal').style.display = 'none'; }
+
+        window.onload = function() {
+            typeWriter();
+        };
+
+        function openMessage() {
+            document.getElementById('messageModal').style.display = 'flex';
+        }
+        function closeMessage() {
+            document.getElementById('messageModal').style.display = 'none';
+        }
     </script>
+
 </body>
 </html>
