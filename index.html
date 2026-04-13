@@ -215,6 +215,11 @@
 </head>
 <body>
 
+    <audio id="mySong" src="song.mp3" preload="auto"></audio>
+
+    <div class="container">
+        <h1>To my hardworking man</h1>
+        ...
     <div class="container">
         <h1>To my hardworking man</h1>
         <p class="subtitle">كل عام وأنت بقلبي.. يا أغلى شخص </p>
@@ -259,8 +264,20 @@
             typeWriter();
         };
 
-        function openMessage() {
-            document.getElementById('messageModal').style.display = 'flex';
+        
+function openMessage() {
+    var audio = document.getElementById("mySong");
+    audio.play().catch(function(error) {
+        console.log("التشغيل بانتظار التفاعل");
+    });
+
+    document.getElementById('messageModal').style.display = 'flex';
+}
+
+
+
+
+            
         }
         function closeMessage() {
             document.getElementById('messageModal').style.display = 'none';
